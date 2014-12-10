@@ -11,3 +11,7 @@
 
 - name: test doing a dthing with my new superpower
   mysql_user: login_user=root login_password=supersecret name=bob password=12345 priv=*.*:ALL state=present
+
+- name: install my.cnf template
+  template: src=my.cnf.j2 dest=/etc/mysql/my.cnf owner=root group=root mode=0644
+  notify: reload mysql
