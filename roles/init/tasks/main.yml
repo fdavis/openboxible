@@ -1,0 +1,7 @@
+---
+- name: install ssh key
+  authorized_key: user=fdavis key="{{ lookup('file', '/home/fdavis/.ssh/openboxible.pub') }}" state=present
+  sudo: false
+
+- name: drop in sudoers.d file
+  copy: src=fdavis dest=/etc/sudoers.d/fdavis owner=root group=root mode=0440

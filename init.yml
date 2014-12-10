@@ -1,0 +1,9 @@
+---
+# init sets up ssh/sudoers because doing so 
+# requires typed passwords
+- hosts: all
+  sudo: yes
+  roles:
+    - role: init
+      tags:
+        - init

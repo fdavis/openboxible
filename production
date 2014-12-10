@@ -1,0 +1,17 @@
+# I usually specify vars at top of the hostfile so they are easily accesible, 
+# but if you have a lot or complex variables I recommend using the host_vars files
+controller ansible_ssh_port=60000 ansible_ssh_host=127.0.0.1
+network ansible_ssh_port=60001 ansible_ssh_host=127.0.0.1
+compute ansible_ssh_port=60002 ansible_ssh_host=127.0.0.1
+
+[openstack-servers]
+controller
+network
+compute
+
+[controller-servers]
+controller
+[network-servers]
+network
+[compute-servers]
+compute

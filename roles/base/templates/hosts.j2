@@ -1,0 +1,22 @@
+127.0.0.1	localhost
+127.0.1.1	{{ inventory_hostname }}
+
+#controller
+10.10.10.51 controller
+192.168.100.51 controller-api
+10.20.20.51 controller-data
+
+#network
+10.10.10.52 network
+192.168.100.52 network-api
+10.20.20.52 network-data
+
+#compute
+10.10.10.53 compute
+192.168.100.53 compute-api
+10.20.20.53 compute-data
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
