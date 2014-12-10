@@ -1,0 +1,11 @@
+---
+# variables that should be globally available go here
+ntpservers:
+ - 0.ubuntu.pool.ntp.org
+ - 1.ubuntu.pool.ntp.org
+ - 2.ubuntu.pool.ntp.org
+ - 3.ubuntu.pool.ntp.org
+
+ntpserveroptions: ""
+
+ntpnopeer: false

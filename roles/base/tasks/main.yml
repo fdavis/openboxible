@@ -1,12 +1,19 @@
 ---
 - name: Run the "apt-get update"
-  apt: update_cache=yes
+  apt: update_cache=yes cache_valid_time=3600
 
 - name: Update all packages to the latest version
   apt: upgrade=dist
 
 - name: install virtual box gust utils
-  apt: name=virtualbox-guest-utils state=present
+  apt: name={{ item }} state=present
+  with_items:
+    - virtualbox-guest-utils
+    - virtualbox-guest-dkms
+    - virtualbox-guest-x11
+    - linux-headers-generic
+    - ntp
+    - python-mysqldb
 
 # settings to help keep ssh latency low
 - name: set UseDNS no in sshd_config
@@ -19,3 +26,7 @@
 
 - name: install /etc/hosts file
   template: src=hosts.j2 dest=/etc/hosts owner=root group=root mode=0644
+
+- name: install ntp.conf template
+  template: src=ntp.conf.j2 dest=/etc/ntp.conf owner=root group=root mode=0644
+  notify: restart ntp

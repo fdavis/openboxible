@@ -3,4 +3,15 @@
 
 - include: base.yml
 
+
+- hosts: controller
+  sudo: yes
+  roles:
+    - role: controller
+      tags:
+        - controller
+
+
+
+
 # You may have more teardown actions you'd like to take here

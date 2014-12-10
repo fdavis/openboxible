@@ -1,0 +1,12 @@
+---
+- name: install virtual box gust utils
+  apt: name={{ item }} state=present
+  with_items:
+    - ntp
+
+- name: settings for ntp
+  lineinfile: dest=/etc/ntp.conf regexp="restrict {{ item }} default kod notrap nomodify" line="restrict {{ item }} default kod notrap nomodify"
+  notify: restart ntp
+  with_items:
+  - -4
+  - -6

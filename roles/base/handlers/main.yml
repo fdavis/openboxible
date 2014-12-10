@@ -1,6 +1,4 @@
 ---
-# these are service state handlers
-
 - name: restart sshd
   service: name=ssh state=restarted
 

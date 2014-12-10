@@ -1,0 +1,13 @@
+---
+- name: install ntp
+  apt: name={{ item }} state=present
+  with_items:
+    - ntp
+
+- name: settings for ntp no upstream
+  lineinfile: dest=/etc/ntp.conf regexp="server.*ntp.org" state=absent
+  notify: restart ntp
+
+- name: settings for ntp use controller for time
+  lineinfile: dest=/etc/ntp.conf regexp="server controller iburst" line="server controller iburst"
+  notify: restart ntp

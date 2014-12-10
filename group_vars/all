@@ -1,3 +1,8 @@
 ---
 # variables that should be globally available go here
-place_holder: data
+ntpservers:
+ - controller
+
+ntpserveroptions: iburst
+
+ntpnopeer: true
