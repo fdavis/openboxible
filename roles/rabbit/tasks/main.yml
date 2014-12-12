@@ -1,0 +1,5 @@
+---
+- apt: name=rabbitmq-server state=present
+  notify: 
+    - set rabbit passwd
+    - start rabbit

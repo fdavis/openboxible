@@ -24,6 +24,10 @@
   lineinfile: dest=/etc/ssh/sshd_config regexp="GSSAPIAuthentication" line="GSSAPIAuthentication no"
   notify: restart sshd
 
+- name: install /etc/hostname file
+  template: src=hostname.j2 dest=/etc/hostname owner=root group=root mode=0644
+  notify: set running hostname
+
 - name: install /etc/hosts file
   template: src=hosts.j2 dest=/etc/hosts owner=root group=root mode=0644
 

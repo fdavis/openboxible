@@ -1,0 +1,33 @@
+---
+- apt: name=keystone state=present
+  notify: restart keystone
+
+- name: change keystone db connection
+  ini_file: dest=/etc/keystone/keystone.conf
+            section=database
+            option=connection
+            value={{ db_connection }}
+            backup=yes
+  notify: 
+    - restart keystone
+    - keystone db sync
+
+- name: set admin_token
+  ini_file: dest=/etc/keystone/keystone.conf
+            section=DEFAULT
+            option=admin_token
+            value={{ admin_token }}
+            backup=yes
+  notify: restart keystone
+
+- name: set log dir
+  ini_file: dest=/etc/keystone/keystone.conf
+            section=DEFAULT
+            option=log_dir
+            value={{ log_dir }}
+            backup=yes
+  notify: restart keystone
+
+- name: setup token scrubbing cron job
+  cron: name=token_scrub special_time=hourly state=present user=keystone
+        job="/usr/bin/keystone-manage token_flush > /var/log/keystone-tokenflush.log 2>&1"

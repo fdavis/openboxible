@@ -1,0 +1,31 @@
+---
+- apt: name=mysql-server state=present
+  notify: 
+    - reload mysql
+
+# unfortunately fails on subsequent runs... can we make this idempotent?
+- name: setup the default root password
+  mysql_user: login_user=root login_password="" name=root password=supersecret
+  ignore_errors: true
+  notify: reload mysql
+
+- name: setup keystone db
+  mysql_db: login_user=root login_password=supersecret  name=keystone state=present
+
+- name: setup keystone user
+  mysql_user: login_user=root login_password=supersecret name=keystone host='%' password=vagrant priv=keystone.*:ALL state=present
+
+- name: install my.cnf template
+  template: src=my.cnf.j2 dest=/etc/mysql/my.cnf owner=root group=root mode=0644
+  notify: reload mysql
+
+- name: ensure anonymous users are not in the database
+  mysql_user: login_user=root login_password=supersecret name='' host={{ item }} state=absent
+  with_items:
+    - localhost
+    - "{{ inventory_hostname }}"
+  notify: reload mysql
+
+- name: remove the test database
+  mysql_db: login_user=root login_password=supersecret name=test state=absent
+  notify: reload mysql

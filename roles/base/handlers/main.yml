@@ -4,3 +4,6 @@
 
 - name: restart ntp
   service: name=ntp state=restarted
+
+- name: set running hostname
+  command: hostname {{ inventory_hostname }}

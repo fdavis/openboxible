@@ -15,3 +15,10 @@ controller
 network
 [compute-servers]
 compute
+
+[mysql]
+controller
+[keystone]
+controller
+[rabbit]
+controller

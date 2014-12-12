@@ -1,4 +1,5 @@
 ---
+ansible_ssh_user: vagrant
 # variables that should be globally available go here
 ntpservers:
  - controller

@@ -1,3 +1,9 @@
 ---
 - name: reload mysql
-  service: name=mysql state=reloaded
+  service: name=mysql state=reloaded enabled=true
+
+- name: reload rabbit
+  service: name=rabbitmq-server state=reloaded enabled=true
+
+- name: set rabbit passwd
+  command: rabbitmqctl change_password guest vagrant

@@ -1,17 +1,24 @@
 ---
-# You may have more setup actions you'd like to take here
-
 - include: base.yml
 
-
-- hosts: controller
+- hosts: mysql
   sudo: yes
   roles:
-    - role: controller
+    - role: mysql
       tags:
-        - controller
+        - mysql
 
+- hosts: rabbit
+  sudo: yes
+  roles:
+    - role: rabbit
+      tags:
+        - rabbit
 
+- hosts: keystone
+  sudo: yes
+  roles:
+    - role: keystone
+      tags:
+        - keystone
 
-
-# You may have more teardown actions you'd like to take here

@@ -1,7 +1,10 @@
 ---
+- name: set root passwd
+  shell: echo root:vagrant | sudo chpasswd
+
 - name: install ssh key
-  authorized_key: user=fdavis key="{{ lookup('file', '/home/fdavis/.ssh/openboxible.pub') }}" state=present
+  authorized_key: user=vagrant key="{{ lookup('file', '/home/fdavis/.ssh/openboxible.pub') }}" state=present
   sudo: false
 
 - name: drop in sudoers.d file
-  copy: src=fdavis dest=/etc/sudoers.d/fdavis owner=root group=root mode=0440
+  copy: src=vagrant dest=/etc/sudoers.d/vagrant owner=root group=root mode=0440

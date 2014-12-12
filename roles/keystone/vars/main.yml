@@ -1,0 +1,5 @@
+---
+#obtain with a $openssl rand -hex 10
+admin_token: 17bb525c22753c9eec11
+log_dir: /var/log/keystone
+db_connection: "mysql://keystone:vagrant@controller/keystone"
