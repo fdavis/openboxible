@@ -29,3 +29,6 @@
 - name: remove the test database
   mysql_db: login_user=root login_password=supersecret name=test state=absent
   notify: reload mysql
+
+- name: make sure mysql is started and enabled
+  service: name=mysql state=started enabled=true

@@ -1,6 +1,6 @@
 ---
 - name: restart keystone
-  service: name=keystone state=restart enabled=true
+  service: name=keystone state=restarted
 
 - name: keystone db sync
-  shell: sudo -iu keystone keystone-manage db_sync 
+  shell: sudo -i keystone-manage db_sync 

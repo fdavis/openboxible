@@ -31,3 +31,7 @@
 - name: setup token scrubbing cron job
   cron: name=token_scrub special_time=hourly state=present user=keystone
         job="/usr/bin/keystone-manage token_flush > /var/log/keystone-tokenflush.log 2>&1"
+
+- name: ensure keystone is running and enabled
+  service: name=keystone state=started enabled=true
+  

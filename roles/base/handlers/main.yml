@@ -7,3 +7,10 @@
 
 - name: set running hostname
   command: hostname {{ inventory_hostname }}
+
+- name: restart eth1+
+  shell: ifdown eth{{ item }}; ifup eth{{ item }};
+  with_items:
+    - 1
+    - 2
+    - 3

@@ -28,6 +28,11 @@
   template: src=hostname.j2 dest=/etc/hostname owner=root group=root mode=0644
   notify: set running hostname
 
+- name: install network interfaces
+  template: src=interfaces.j2 dest=/etc/network/interfaces owner=root group=root mode=0644
+  notify: restart eth1+
+  when: isClient is not defined
+
 - name: install /etc/hosts file
   template: src=hosts.j2 dest=/etc/hosts owner=root group=root mode=0644
 

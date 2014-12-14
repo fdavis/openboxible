@@ -1,0 +1,10 @@
+---
+- hosts: clients
+  sudo: yes
+  roles:
+    - role: base
+      tags:
+        - base
+    - role: client
+      tags:
+        - client

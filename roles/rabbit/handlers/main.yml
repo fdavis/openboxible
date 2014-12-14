@@ -1,6 +1,6 @@
 ---
-- name: start rabbit
-  service: name=rabbitmq-server state=start enabled=true
+- name: restart rabbit
+  service: name=rabbitmq-server state=restarted
 
 - name: set rabbit passwd
   command: rabbitmqctl change_password guest vagrant

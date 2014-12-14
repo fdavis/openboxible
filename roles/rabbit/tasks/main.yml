@@ -2,4 +2,8 @@
 - apt: name=rabbitmq-server state=present
   notify: 
     - set rabbit passwd
-    - start rabbit
+    - restart rabbit
+
+
+- name: ensure rabbit is started and enabled
+  service: name=rabbitmq-server state=started enabled=true

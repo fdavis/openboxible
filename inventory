@@ -3,6 +3,7 @@
 controller ansible_ssh_port=60000 ansible_ssh_host=127.0.0.1
 network ansible_ssh_port=60001 ansible_ssh_host=127.0.0.1
 compute ansible_ssh_port=60002 ansible_ssh_host=127.0.0.1
+client ansible_ssh_port=60003 ansible_ssh_host=127.0.0.1
 
 [openstack-servers]
 controller
@@ -22,3 +23,8 @@ controller
 controller
 [rabbit]
 controller
+[ntp-servers]
+controller
+
+[clients]
+client
